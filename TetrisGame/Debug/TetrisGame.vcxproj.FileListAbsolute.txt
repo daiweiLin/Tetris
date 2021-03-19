@@ -1,0 +1,2 @@
+F:\Personal_Projects\Tetris\TetrisGame\Debug\TetrisGame.exe
+F:\Personal_Projects\Tetris\TetrisGame\Debug\TetrisGame.pdb
