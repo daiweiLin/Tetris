@@ -1,0 +1,4 @@
+﻿  TetrisGame.cpp
+D:\Personal_Projects\Tetris\TetrisGame\TetrisGame.cpp(47): warning C4715: 'DoesPieceFit': not all control paths return a value
+D:\Personal_Projects\Tetris\TetrisGame\TetrisGame.cpp(27): warning C4715: 'Rotate': not all control paths return a value
+  TetrisGame.vcxproj -> D:\Personal_Projects\Tetris\TetrisGame\Debug\TetrisGame.exe

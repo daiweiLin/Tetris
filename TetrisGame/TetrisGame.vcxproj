@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{8a68d8d1-b517-4535-a65e-bd5d362150d0}</ProjectGuid>
+    <ProjectGuid>{f5792389-a9ab-4284-9e02-f94b3ed6e6fa}</ProjectGuid>
     <RootNamespace>TetrisGame</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
