@@ -46,6 +46,35 @@ bool DoesPieceFit(int nTetromino, int nRotation, int nPosX, int nPosY)
     }
 }
 
+int ShiftIfNotFit(int nTetromino, int nRotation, int nPosX, int nPosY)
+{
+    for (int x = 0; x < 4; x++)
+    {
+        for (int y = 0; y < 4; y++)
+        {
+            // Index in 4*4 tetromino block
+            int pi = Rotate(x, y, nRotation);
+            // Index in field array
+            int fi = (nPosY + y) * nFieldWidth + (nPosX + x);
+
+            if (nPosX + x >= 0 && nPosY + y < nFieldHeight)
+            {
+                if (tetromino[nTetromino][pi] == L'X')
+                    if(pField[fi] > 0 && pField[fi] < 9)
+                        return 100; //collision with tetromino blocks
+                    else if (pField[fi] == 9)
+                    {
+                        if (nPosX + x < nFieldWidth / 2)
+                            return x + 1 + ShiftIfNotFit(nTetromino, nRotation, nPosX + x + 1, nPosY);
+                        else
+                            return -(4 - x) + ShiftIfNotFit(nTetromino, nRotation, nPosX - (4 - x), nPosY);
+                    }
+            }
+        }
+    }
+    return 0;
+}
+
 int main()
 {
     // Assets
@@ -112,6 +141,7 @@ int main()
 
     bool bKeys[4];
     bool bRotatePressed = false;
+    int nShift = 0;
 
     int nSpeed = 20; // 1 sec
     int nSpeedCounter = 0;
@@ -143,8 +173,13 @@ int main()
                 nCurrentY += 1;
         if (bKeys[3])
         {
-            if (!bRotatePressed && DoesPieceFit(nCurrentPiece, nCurrentRotation + 1, nCurrentX, nCurrentY))
+            nShift = ShiftIfNotFit(nCurrentPiece, nCurrentRotation + 1, nCurrentX, nCurrentY);
+            if (!bRotatePressed && nShift <= 4 && nShift >= -4)
+            {
                 nCurrentRotation += 1;
+                nCurrentX += nShift;
+            }
+                
             bRotatePressed = true;    
         }
         else
